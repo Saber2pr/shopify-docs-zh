@@ -1,0 +1,180 @@
+<!doctype html><html lang="en"><head>
+    <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    @keyframes skeleton-loading {
+      0% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0 50%;
+      }
+    }
+
+    .skeleton-loading-list {
+      margin: 3rem 1rem 10rem;
+    }
+
+    .skeleton-loading-item {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%);
+      background-size: 400% 100%;
+      animation-name: skeleton-loading;
+      animation-duration: 1.4s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+      height: 16px;
+      margin-top: 16px;
+    }
+    </style>
+
+    <style>
+      .ssr-a {
+        color: #6d6d6d;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .ssr-a:hover {
+        color: black;
+      }
+
+      .ssr-a-active {
+        color: black;
+        font-weight: 700;
+        border-left: 0.25rem solid #61dafb;
+        padding-left: 10px;
+      }
+
+      .ssr-li {
+        line-height: 2rem;
+      }
+
+      .ssr-ul {
+        list-style: none;
+        padding-left: 16px;
+        margin: 4px;
+      }
+
+      .ssr-dir {
+        color: #6d6d6d;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .ssr-dir-active {
+        color: #1a1a1a;
+      }
+
+      .ssr-div-name:hover {
+        outline: -webkit-focus-ring-color auto 1px;
+        color: #1a1a1a;
+      }
+
+      .ssr-topheader {
+        width: 100%;
+        height: 40px;
+        background-color: #20232a;
+        position: fixed;
+        left:0;
+        top:0;
+      }
+      .ssr-topheader-a {
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        display: inline-block;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+        color: #d5d5d7;
+        border-bottom: none;
+        line-height: 40px;
+      }
+
+      .ssr-content-title {
+        word-break: break-all;
+        font-size: 3rem;
+        margin-top: 3rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+
+      .ssr-wiki-menu {
+        width: 30%;
+        background-color: #f7f7f7;
+        border-left: 1px solid #ececec;
+        height: calc(100vh - 40px);
+        position: fixed;
+        right:-1rem;
+        top:40px;
+        overflow-y:auto;
+      }
+
+      #root-pre {
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+        position: fixed;
+        left:0;
+        top:0;
+        z-index:999;
+      }
+      #root {
+        position: relative;
+        z-index:0;
+      }
+    </style>
+    <script>
+    window.__title = "概述"
+    window.__basename = '/shopify-docs-zh'
+    window.__expandDirs = ["/blog/主题"]
+    window.__wiki = `
+Shopify中文文档:1691027739
+主题
+  概述:302341195/3324366169
+  入门
+    概述:302341195/3324366169
+    创建主题:302341195/3032883567/2205545984
+    自定义主题:302341195/3032883567/1854440938
+`
+    window.__blog = `%23%23%23%20%E6%9E%84%E5%BB%BA%20Shopify%20%E4%B8%BB%E9%A2%98%0A%0A%E4%B8%BB%E9%A2%98%E5%A1%91%E9%80%A0%E4%BA%86%E5%95%86%E5%AE%B6%E5%8F%8A%E5%85%B6%E5%AE%A2%E6%88%B7%E7%9A%84%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E4%BD%93%E9%AA%8C%E3%80%82%E4%BD%BF%E7%94%A8%20Shopify%20%E7%9A%84%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E8%AF%AD%E8%A8%80Liquid%E4%BB%A5%E5%8F%8A%20HTML%E3%80%81CSS%E3%80%81JavaScript%20%E5%92%8C%20JSON%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%9E%84%E5%BB%BA%E5%BF%AB%E9%80%9F%E3%80%81%E7%81%B5%E6%B4%BB%E7%9A%84%E4%B8%BB%E9%A2%98%E3%80%82%0A%0A%0A%23%23%23%23%201.%20%5B%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%96%B0%E4%B8%BB%E9%A2%98%5D()%0A%0A%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%20Shopify%20%E4%B8%BB%E9%A2%98%E3%80%82%E4%BA%86%E8%A7%A3%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%88%91%E4%BB%AC%E7%9A%84%E5%8F%82%E8%80%83%E4%B8%BB%E9%A2%98%20Dawn%20%E8%AE%BE%E7%BD%AE%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%B9%B6%E6%9E%84%E5%BB%BA%E6%96%B0%E4%B8%BB%E9%A2%98%E3%80%82%0A%0A%23%23%23%23%202.%20%5B%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%5D()%0A%0A%E4%BA%86%E8%A7%A3%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%95%86%E5%AE%B6%E7%9A%84%E5%95%86%E5%BA%97%EF%BC%8C%E5%B9%B6%E8%BF%9B%E8%A1%8C%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6%E4%BB%A5%E4%BB%A3%E8%A1%A8%E6%AF%8F%E4%B8%AA%E5%95%86%E5%AE%B6%E7%9A%84%E7%8B%AC%E7%89%B9%E5%93%81%E7%89%8C%E3%80%82`
+    </script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="keywords" content="react,antd,typescript,javascript,css,html,前端学习,前端进阶,个人博客"><meta name="description" content="### 构建 Shopify 主题
+
+主题塑造了商家及其客户的在线商店体验。使用 Shopify 的主题模板语言Liquid以及 HTML、CSS、JavaScript 和 JSON大规模构建快速、灵活的主题。
+
+
+#### …"><script async src="/click-mask/click-mask.min.js"></script><script async src="/test/tools/debug.min.js"></script><title>概述 - Shopify中文文档</title><script defer="defer" src="//saber2pr.top/wiki/release/%5Bname%5Df7d9affe21e8097041ea.min.js"></script><script defer="defer" src="//saber2pr.top/wiki/release/index~bde52cb3f7d9affe21e8097041ea.min.js"></script><script defer="defer" src="//saber2pr.top/wiki/release/index~31743c5af7d9affe21e8097041ea.min.js"></script><link href="//saber2pr.top/wiki/release/index~e96e9beaf7d9affe21e8097041ea.css" rel="stylesheet"><link href="//saber2pr.top/wiki/release/index~31743c5af7d9affe21e8097041ea.css" rel="stylesheet"></head><body><div id="root-pre"><div class="ssr-topheader">
+    <a class="ssr-topheader-a" href="/shopify-docs-zh/">Shopify中文文档</a>
+    </div><div style="margin: 0 4.5rem;display:flex;">
+      <div style="width:70%;">
+        <h1 class="ssr-content-title">概述</h1>
+        <div style="margin:1rem;padding:1rem;"><h3 id="shopify">构建 Shopify 主题</h3>
+<p>主题塑造了商家及其客户的在线商店体验。使用 Shopify 的主题模板语言Liquid以及 HTML、CSS、JavaScript 和 JSON大规模构建快速、灵活的主题。</p>
+<h4 id="1">1. [建立一个新主题]()</h4>
+<p>开始构建 Shopify 主题。了解如何使用我们的参考主题 Dawn 设置开发环境并构建新主题。</p>
+<h4 id="2">2. [自定义主题]()</h4>
+<p>了解如何访问商家的商店，并进行主题定制以代表每个商家的独特品牌。</p></div>
+      </div>
+      <div class="ssr-wiki-menu">
+        <div style="margin: 3rem 0 10rem"><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/1691027739/" class="ssr-a ">Shopify中文文档</a></li>
+<li class="ssr-li"><div class="ssr-dir ssr-dir-active">
+  <svg class="TreeBtn" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="10" height="10" style="transform: rotateX(0deg); transition: transform 0.2s ease 0s;"><g transform="translate(904.92214,-879.1482)"><path d=" m -673.67664,1221.6502 -231.2455,-231.24803 55.6165, -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894, 0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892, -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696, -174.68583 0.6895,0 26.281,25.03215 56.8701, 55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864 -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688, -104.0616 -231.873,-231.248 z
+" fill="currentColor"></path></g></svg>
+  <span class="ssr-div-name">主题</span></div><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3324366169/" class="ssr-a ssr-a-active">概述</a></li>
+<li class="ssr-li"><div class="ssr-dir ">
+  <svg class="TreeBtn" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="10" height="10" style="transform: rotateX(0deg); transition: transform 0.2s ease 0s;"><g transform="translate(904.92214,-879.1482)"><path d=" m -673.67664,1221.6502 -231.2455,-231.24803 55.6165, -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894, 0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892, -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696, -174.68583 0.6895,0 26.281,25.03215 56.8701, 55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864 -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688, -104.0616 -231.873,-231.248 z
+" fill="currentColor"></path></g></svg>
+  <span class="ssr-div-name">入门</span></div><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3324366169/" class="ssr-a ssr-a-active">概述</a></li>
+<li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3032883567/2205545984/" class="ssr-a ">创建主题</a></li>
+<li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3032883567/1854440938/" class="ssr-a ">自定义主题</a></li></ul></li></ul></li></ul></div>
+      </div>
+    </div></div><div id="root"></div></body></html>

@@ -1,0 +1,234 @@
+<!doctype html><html lang="en"><head>
+    <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    @keyframes skeleton-loading {
+      0% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0 50%;
+      }
+    }
+
+    .skeleton-loading-list {
+      margin: 3rem 1rem 10rem;
+    }
+
+    .skeleton-loading-item {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.15) 37%, rgba(0, 0, 0, 0.06) 63%);
+      background-size: 400% 100%;
+      animation-name: skeleton-loading;
+      animation-duration: 1.4s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+      height: 16px;
+      margin-top: 16px;
+    }
+    </style>
+
+    <style>
+      .ssr-a {
+        color: #6d6d6d;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .ssr-a:hover {
+        color: black;
+      }
+
+      .ssr-a-active {
+        color: black;
+        font-weight: 700;
+        border-left: 0.25rem solid #61dafb;
+        padding-left: 10px;
+      }
+
+      .ssr-li {
+        line-height: 2rem;
+      }
+
+      .ssr-ul {
+        list-style: none;
+        padding-left: 16px;
+        margin: 4px;
+      }
+
+      .ssr-dir {
+        color: #6d6d6d;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .ssr-dir-active {
+        color: #1a1a1a;
+      }
+
+      .ssr-div-name:hover {
+        outline: -webkit-focus-ring-color auto 1px;
+        color: #1a1a1a;
+      }
+
+      .ssr-topheader {
+        width: 100%;
+        height: 40px;
+        background-color: #20232a;
+        position: fixed;
+        left:0;
+        top:0;
+      }
+      .ssr-topheader-a {
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        display: inline-block;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+        color: #d5d5d7;
+        border-bottom: none;
+        line-height: 40px;
+      }
+
+      .ssr-content-title {
+        word-break: break-all;
+        font-size: 3rem;
+        margin-top: 3rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+
+      .ssr-wiki-menu {
+        width: 30%;
+        background-color: #f7f7f7;
+        border-left: 1px solid #ececec;
+        height: calc(100vh - 40px);
+        position: fixed;
+        right:-1rem;
+        top:40px;
+        overflow-y:auto;
+      }
+
+      #root-pre {
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+        position: fixed;
+        left:0;
+        top:0;
+        z-index:999;
+      }
+      #root {
+        position: relative;
+        z-index:0;
+      }
+    </style>
+    <script>
+    window.__title = "概述"
+    window.__basename = '/shopify-docs-zh'
+    window.__expandDirs = ["/blog/主题/入门","/blog/主题"]
+    window.__wiki = `
+Shopify中文文档:1691027739
+主题
+  概述:302341195/3324366169
+  入门
+    概述:302341195/3324366169
+    创建主题:302341195/3032883567/2205545984
+    自定义主题:302341195/3032883567/1854440938
+`
+    window.__blog = `%23%23%23%20Shopify%20%E4%B8%BB%E9%A2%98%E6%A6%82%E8%BF%B0%0A%0A%E4%B8%BB%E9%A2%98%E5%86%B3%E5%AE%9A%E4%BA%86%20Shopify%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E5%AF%B9%E4%BA%8E%E5%95%86%E5%AE%B6%E5%8F%8A%E5%85%B6%E5%AE%A2%E6%88%B7%E7%9A%84%E5%A4%96%E8%A7%82%E3%80%81%E6%84%9F%E8%A7%89%E5%92%8C%E5%8A%9F%E8%83%BD%E3%80%82%0A%0AShopify%20%E4%B8%BB%E9%A2%98%E6%98%AF%E4%BD%BF%E7%94%A8%20Shopify%20%E7%9A%84%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E8%AF%AD%E8%A8%80Liquid%E4%BB%A5%E5%8F%8A%20HTML%E3%80%81CSS%E3%80%81JavaScript%20%E5%92%8C%20JSON%20%E6%9E%84%E5%BB%BA%E7%9A%84%E3%80%82%E4%BD%BF%E7%94%A8%E8%BF%99%E4%BA%9B%E8%AF%AD%E8%A8%80%EF%BC%8C%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E5%AE%A2%E6%88%B7%E6%83%B3%E8%A6%81%E7%9A%84%E4%BB%BB%E4%BD%95%E5%A4%96%E8%A7%82%E5%92%8C%E6%84%9F%E8%A7%89%E3%80%82Shopify%20%E6%8F%90%E4%BE%9B%E4%BA%86%E5%A4%9A%E7%A7%8D%E5%B7%A5%E5%85%B7%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%9D%A5%E5%8A%A0%E9%80%9F%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E3%80%82%0A%0A%E4%BD%9C%E4%B8%BA%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%B8%BA%E7%89%B9%E5%AE%9A%E5%95%86%E5%AE%B6%E6%9E%84%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%E4%BB%A5%E6%BB%A1%E8%B6%B3%E5%95%86%E5%AE%B6%E7%9A%84%E9%9C%80%E6%B1%82%EF%BC%8C%E6%88%96%E8%80%85%E6%9E%84%E5%BB%BA%E4%B8%BB%E9%A2%98%E4%BB%A5%E5%9C%A8%20Shopify%20%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%E4%B8%AD%E9%94%80%E5%94%AE%E3%80%82%E6%82%A8%E8%BF%98%E5%8F%AF%E4%BB%A5%E6%9E%84%E5%BB%BA%E6%89%A9%E5%B1%95%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E3%80%82%0A%0A---%0A%0A%23%23%23%20Shopify%20%E4%B8%BB%E9%A2%98%E5%89%96%E6%9E%90%0A%0A%E4%B8%BB%E9%A2%98%E6%8E%A7%E5%88%B6%E5%95%86%E5%AE%B6%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E7%9A%84%E7%BB%84%E7%BB%87%E3%80%81%E5%8A%9F%E8%83%BD%E5%92%8C%E9%A3%8E%E6%A0%BC%E3%80%82%E4%B8%BB%E9%A2%98%E4%BB%A3%E7%A0%81%E9%87%87%E7%94%A8%E7%89%B9%E5%AE%9A%E4%BA%8E%20Shopify%20%E4%B8%BB%E9%A2%98%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%E6%A0%87%E5%87%86%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%A5%E5%8F%8A%E5%9B%BE%E5%83%8F%E3%80%81%E6%A0%B7%E5%BC%8F%E8%A1%A8%E5%92%8C%E8%84%9A%E6%9C%AC%E7%AD%89%E6%94%AF%E6%8C%81%E8%B5%84%E4%BA%A7%E8%BF%9B%E8%A1%8C%E7%BB%84%E7%BB%87%E3%80%82%0A%0A%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%EF%BC%8C%E6%82%A8%E5%BA%94%E8%AF%A5%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E7%9A%84%E7%BB%86%E5%88%86%E5%B8%82%E5%9C%BA%E6%88%96%E7%94%A8%E4%BE%8B%E4%BC%98%E5%8C%96%E4%B8%BB%E9%A2%98%E7%9A%84%E7%BB%84%E7%BB%87%E3%80%81%E5%8A%9F%E8%83%BD%E5%92%8C%E9%A3%8E%E6%A0%BC%E3%80%82%E6%9C%80%E5%A5%BD%E7%9A%84%E4%B8%BB%E9%A2%98%E6%98%AF%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E7%9A%84%E5%95%86%E5%AE%B6%E8%B5%84%E6%96%99%E5%88%B6%E4%BD%9C%E7%9A%84%E3%80%82%E4%BA%86%E8%A7%A3%E6%9C%89%E5%85%B3%E8%AE%BE%E8%AE%A1%E4%B8%BB%E9%A2%98%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E7%9A%84%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF%E3%80%82%0A%0A%E5%A6%82%E6%9E%9C%E6%82%A8%E6%AD%A3%E5%9C%A8%E4%B8%BAShopify%20%E6%A8%A1%E7%89%88%E5%95%86%E5%BA%97%E6%9E%84%E5%BB%BA%E6%A8%A1%E7%89%88%EF%BC%8C%E9%82%A3%E4%B9%88%E6%82%A8%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E6%A8%A1%E7%89%88%E6%8F%90%E4%BE%9B%E7%9A%84%E5%B8%83%E5%B1%80%E9%80%89%E9%A1%B9%E3%80%81%E6%A8%A1%E7%89%88%E6%A0%B7%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%8C%85%E5%90%AB%E7%9A%84%E5%8A%9F%E8%83%BD%E6%96%B9%E9%9D%A2%E7%9A%84%E6%9F%90%E4%BA%9B%E8%A6%81%E6%B1%82%E3%80%82%0A%0A%23%23%23%23%20%E6%A0%87%E8%AE%B0%E5%92%8C%E5%8A%9F%E8%83%BD%0A%0A%E6%AF%8F%E4%B8%AA%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%BB%84%E7%BB%87%E7%94%B1%E4%BB%A5%E4%B8%8B%E7%BB%84%E4%BB%B6%E5%86%B3%E5%AE%9A%E3%80%82%0A%0A!%5B%5D(https%3A%2F%2Fshopify.dev%2Fassets%2Fthemes%2Farchitecture%2Fall-components.png)%0A%0A1.%20%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%0A2.%20%E5%88%86%E9%85%8D%E7%BB%99%E6%AD%A3%E5%9C%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E8%B5%84%E6%BA%90%E7%9A%84%E6%A8%A1%E6%9D%BF%0A3.%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%A8%A1%E6%9D%BF%E7%9A%84%E9%83%A8%E5%88%86%E7%BB%84%0A4.%20%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%A8%A1%E6%9D%BF%E6%88%96%E9%83%A8%E5%88%86%E7%BB%84%E7%9A%84%E9%83%A8%E5%88%86%0A5.%20%E6%AF%8F%E4%B8%AA%E9%83%A8%E5%88%86%E5%8C%85%E5%90%AB%E7%9A%84%E5%9D%97%0A%0A%E6%AF%8F%E4%B8%AA%E4%B8%BB%E9%A2%98%E5%BA%94%E8%AF%A5%E5%8C%85%E5%90%AB%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%9D%A5%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E4%BE%8B%E5%A6%82%E4%B8%BB%E9%A1%B5%E5%92%8C%E4%BA%A7%E5%93%81%E3%80%82%E6%82%A8%E8%BF%98%E5%8F%AF%E4%BB%A5%E4%B8%BA%E5%90%8C%E4%B8%80%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AA%E6%A8%A1%E6%9D%BF%EF%BC%8C%E4%BB%A5%E5%85%81%E8%AE%B8%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E4%B8%AD%E5%AD%98%E5%9C%A8%E5%8F%98%E5%8C%96%E3%80%82%0A%0A%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%8A%9F%E8%83%BD%E5%BC%95%E5%85%A5%20Liquid%20%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%E3%80%81%E9%83%A8%E5%88%86%E3%80%81%E5%9D%97%E5%92%8C%E7%89%87%E6%AE%B5%E4%B8%AD%E7%9A%84%E4%B8%BB%E9%A2%98%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Liquid%E3%80%81CSS%20%E5%92%8C%20JavaScript%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E3%80%82%E4%B8%BB%E9%A2%98%E4%B8%AD%E5%8C%85%E5%90%AB%E7%9A%84%E5%8A%9F%E8%83%BD%E5%91%8A%E7%9F%A5%E5%AE%A2%E6%88%B7%E5%A6%82%E4%BD%95%E4%B8%8E%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%8C%E6%82%A8%E7%9A%84%E4%B8%BB%E9%A2%98%E9%9C%80%E8%A6%81%E5%85%81%E8%AE%B8%E5%AE%A2%E6%88%B7%E9%80%9A%E8%BF%87%E6%8F%90%E4%BE%9B%E5%B8%A6%E6%9C%89%E7%B1%BB%E5%9E%8B%E7%9A%84Liquidform%E6%A0%87%E7%AD%BEproduct%E6%9D%A5%E5%B0%86%E4%BA%A7%E5%93%81%E6%B7%BB%E5%8A%A0%E5%88%B0%E8%B4%AD%E7%89%A9%E8%BD%A6%E3%80%82%0A%0A%23%23%23%23%20%E9%85%8D%E5%A5%97%E8%B5%84%E4%BA%A7%0A%0A%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%90%91%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%94%AF%E6%8C%81%E8%B5%84%E6%BA%90%EF%BC%8C%E4%BB%A5%E6%8E%A7%E5%88%B6%E7%BB%84%E4%BB%B6%E5%92%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%91%88%E7%8E%B0%EF%BC%8C%E6%88%96%E5%AD%98%E5%82%A8%E5%8F%AF%E8%B7%A8%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8F%AF%E9%87%8D%E7%94%A8%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E3%80%82%0A%0A%E4%BE%8B%E5%A6%82%EF%BC%8C%E6%82%A8%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0%E8%B5%84%E6%BA%90%E6%9D%A5%E8%AE%BE%E7%BD%AE%E4%B8%BB%E9%A2%98%E6%A0%B7%E5%BC%8F%E3%80%82%E8%BF%99%E4%BA%9B%E8%B5%84%E6%BA%90%E6%9C%89%E5%8A%A9%E4%BA%8E%E5%AE%9A%E4%B9%89%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E7%9A%84%E7%BE%8E%E6%84%9F%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AE%B9%E9%83%A8%E5%88%86%E6%9D%A5%E8%A1%A8%E8%BE%BE%E5%95%86%E5%AE%B6%E7%9A%84%E5%93%81%E7%89%8C%E3%80%82%E4%B8%BB%E9%A2%98%E7%9A%84%E6%A0%B7%E5%BC%8F%E7%94%B1%E5%BA%94%E7%94%A8%E4%BA%8E%E5%B8%83%E5%B1%80%E3%80%81%E6%A8%A1%E6%9D%BF%E5%92%8C%E8%8A%82%E6%96%87%E4%BB%B6%E7%9A%84%20CSS%20%E5%92%8C%20JavaScript%20%E5%AE%9A%E4%B9%89%E3%80%82%E6%82%A8%E6%83%B3%E8%A6%81%E5%9C%A8%E4%B8%BB%E9%A2%98%E4%B8%AD%E9%87%8D%E5%A4%8D%E4%BD%BF%E7%94%A8%E7%9A%84%20Liquid%20%E5%92%8C%20HTML%20%E5%8F%AF%E4%BB%A5%E5%AD%98%E5%82%A8%E5%9C%A8snippets%E4%B8%AD%E3%80%82%E4%B8%BB%E9%A2%98CSS%E5%92%8CJavaScript%E5%AD%98%E5%82%A8%E5%9C%A8%E4%B8%BB%E9%A2%98%E7%9A%84assets%E7%9B%AE%E5%BD%95%E4%B8%AD%E3%80%82%0A%0A%E6%AD%A4%E5%A4%96%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%B0%86%E4%B8%BB%E9%A2%98%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E8%AF%AD%E8%A8%80%E3%80%82%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%B8%80%E7%BB%84%E5%9C%A8%E6%95%B4%E4%B8%AA%E4%B8%BB%E9%A2%98%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%BF%BB%E8%AF%91%EF%BC%8C%E5%B9%B6%E5%AD%98%E5%82%A8%E5%9C%A8%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%AD%E3%80%82%0A%0A%23%23%23%23%20%E5%85%81%E8%AE%B8%E5%95%86%E5%AE%B6%E5%AE%9A%E5%88%B6%0A%0A%E5%95%86%E5%AE%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Shopify%E4%B8%BB%E9%A2%98%E7%BC%96%E8%BE%91%E5%99%A8%E4%BB%8E%20Shopify%20%E5%90%8E%E5%8F%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%B6%E4%B8%BB%E9%A2%98%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E6%8F%90%E4%BE%9B%E4%B8%8D%E5%90%8C%E7%9A%84%E4%B8%BB%E9%A2%98%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%89%E9%A1%B9%EF%BC%8C%E4%BD%BF%E5%95%86%E5%AE%B6%E6%97%A0%E9%9C%80%E7%BC%96%E8%BE%91%E4%BB%A3%E7%A0%81%E5%8D%B3%E5%8F%AF%E5%88%9B%E5%BB%BA%E6%89%80%E9%9C%80%E7%9A%84%E5%AE%A2%E6%88%B7%E4%BD%93%E9%AA%8C%EF%BC%9A%0A%0A*%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86%E5%92%8C%E5%9D%97%E4%BD%BF%E4%B8%BB%E9%A2%98%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%9D%97%E5%8C%96%E3%80%82%0A*%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E8%AE%BE%E7%BD%AE%E4%BB%A5%E5%85%81%E8%AE%B8%E5%95%86%E5%AE%B6%E6%8E%A7%E5%88%B6%E4%B8%BB%E9%A2%98%E7%9A%84%E5%A4%96%E8%A7%82%E6%88%96%E8%A1%8C%E4%B8%BA%E3%80%82%E5%95%86%E5%AE%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81%E6%BA%90%E6%9D%A5%E8%AE%BE%E7%BD%AE%E5%8A%A8%E6%80%81%E5%80%BC%E3%80%82%0A%0A---%0A%0A%23%23%23%20%E4%B8%BB%E9%A2%98%E5%8F%91%E5%B8%83%0A%0A%E4%B8%BB%E9%A2%98%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%BB%A5%E4%B8%8B%E6%96%B9%E5%BC%8F%E5%88%86%E5%8F%91%EF%BC%9A%0A%0A*%20%E9%80%9A%E8%BF%87%E5%B0%86%E4%B8%BB%E9%A2%98%E7%9B%AE%E5%BD%95%E6%8D%86%E7%BB%91%E4%B8%BA%20ZIP%20%E6%96%87%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E5%95%86%E5%AE%B6%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%85%B6%20Shopify%20%E5%90%8E%E5%8F%B0%E4%B8%8A%E4%BC%A0%E8%AF%A5%E6%96%87%E4%BB%B6%E3%80%82%0A*%20%E9%80%9A%E8%BF%87%E5%B0%86%E4%B8%BB%E9%A2%98%E4%B8%8A%E4%BC%A0%E5%88%B0%20GitHub%20%E5%AD%98%E5%82%A8%E5%BA%93%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%86%E5%AD%98%E5%82%A8%E5%BA%93%E7%9A%84%E5%88%86%E6%94%AF%E8%BF%9E%E6%8E%A5%E5%88%B0%20Shopify%20%E5%90%8E%E5%8F%B0%E4%B8%AD%E7%9A%84%E4%B8%BB%E9%A2%98%E3%80%82%0A*%20%E9%80%9A%E8%BF%87%E4%BD%BF%E7%94%A8Shopify%20CLI%E5%B0%86%E4%B8%BB%E9%A2%98%E6%8E%A8%E9%80%81%E5%88%B0%E5%95%86%E5%BA%97%E3%80%82%0A%0A---%0A%0A%23%23%23%20%E4%BD%BF%E7%94%A8%20Shopify%20%E4%B8%BB%E9%A2%98%E5%BB%BA%E7%AB%8B%E6%82%A8%E7%9A%84%E4%B8%9A%E5%8A%A1%0A%0A%E4%BD%9C%E4%B8%BAShopify%20%E5%90%88%E4%BD%9C%E4%BC%99%E4%BC%B4%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%9C%A8%E4%BD%BF%E7%94%A8%20Shopify%20%E6%A8%A1%E7%89%88%E6%97%B6%E8%B5%9A%E5%8F%96%E6%94%B6%E5%85%A5%E3%80%82%0A%0A%23%23%23%23%20%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6%0A%0A%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%BB%E9%A2%98%E7%9B%B8%E5%85%B3%E4%BB%BB%E5%8A%A1%E6%98%AF%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6%EF%BC%8C%E5%8D%B3%E6%9B%B4%E6%94%B9%E7%8E%B0%E6%9C%89%E4%B8%BB%E9%A2%98%E4%BB%A5%E6%BB%A1%E8%B6%B3%E5%95%86%E5%AE%B6%E7%9A%84%E9%9C%80%E6%B1%82%E3%80%82%E5%AE%9A%E5%88%B6%E5%B7%A5%E4%BD%9C%E8%8C%83%E5%9B%B4%E4%BB%8E%E7%BB%86%E5%BE%AE%E8%B0%83%E6%95%B4%E5%88%B0%E5%A4%A7%E4%BF%AE%E3%80%82%0A%0A%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87Shopify%20%E5%90%88%E4%BD%9C%E4%BC%99%E4%BC%B4%E7%9B%AE%E5%BD%95%E7%94%B3%E8%AF%B7%E6%8F%90%E4%BE%9B%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6%E6%9C%8D%E5%8A%A1%E3%80%82%0A%0A%E4%BA%86%E8%A7%A3%E6%9C%89%E5%85%B3%E5%90%88%E4%BD%9C%E4%BC%99%E4%BC%B4%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF%E3%80%82%0A%0A%23%23%23%23%20%E5%BB%BA%E7%AB%8B%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98%E5%92%8C%E5%95%86%E5%BA%97%0A%0A%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E4%B8%BB%E9%A2%98%E3%80%82%E8%BF%99%E5%8F%AF%E8%83%BD%E6%98%AF%E4%B8%80%E9%A1%B9%E8%89%B0%E5%B7%A8%E7%9A%84%E4%BB%BB%E5%8A%A1%EF%BC%8C%E8%80%8C%E4%B8%94%E8%BF%99%E9%A1%B9%E5%B7%A5%E4%BD%9C%E9%80%9A%E5%B8%B8%E6%98%AF%E7%94%B1%E5%85%B7%E6%9C%89%E9%9D%9E%E5%B8%B8%E5%85%B7%E4%BD%93%E8%A6%81%E6%B1%82%E7%9A%84%E5%8D%95%E4%B8%AA%E5%95%86%E4%BA%BA%E5%A7%94%E6%89%98%E7%9A%84%E3%80%82%0A%0A%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87Shopify%20%E5%90%88%E4%BD%9C%E4%BC%99%E4%BC%B4%E7%9B%AE%E5%BD%95%E6%8F%90%E4%BE%9B%E4%B8%BB%E9%A2%98%E6%9E%84%E5%BB%BA%E6%9C%8D%E5%8A%A1%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E5%90%91%E5%AE%A2%E6%88%B7%E6%94%B6%E5%8F%96%E5%8F%8C%E6%96%B9%E5%90%8C%E6%84%8F%E7%9A%84%E8%B4%B9%E7%94%A8%E6%9D%A5%E6%9E%84%E5%BB%BA%E4%BB%96%E4%BB%AC%E7%9A%84%E4%B8%BB%E9%A2%98%E3%80%82%0A%0A%E5%A6%82%E6%9E%9C%E6%82%A8%E6%AD%A3%E5%9C%A8%E4%B8%BA%E9%A6%96%E6%AC%A1%E8%BF%81%E7%A7%BB%E5%88%B0%20Shopify%20%E7%9A%84%E5%AE%A2%E6%88%B7%E6%9E%84%E5%BB%BA%E4%B8%BB%E9%A2%98%EF%BC%8C%E9%82%A3%E4%B9%88%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E5%95%86%E5%BA%97%E6%9D%A5%E6%9E%84%E5%BB%BA%E4%BB%96%E4%BB%AC%E7%9A%84%E5%95%86%E5%BA%97%E5%B9%B6%E6%9E%84%E5%BB%BA%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%96%E4%BB%AC%E7%9A%84%E4%B8%BB%E9%A2%98%E3%80%82%E5%B0%86%E5%95%86%E5%BA%97%E4%BA%A4%E7%BB%99%E5%95%86%E5%AE%B6%E5%90%8E%EF%BC%8C%E6%82%A8%E4%BC%9A%E6%94%B6%E5%88%B0%E7%BB%8F%E5%B8%B8%E6%80%A7%E4%BD%A3%E9%87%91%E3%80%82%0A%0A%E4%BA%86%E8%A7%A3%E6%9C%89%E5%85%B3%E4%B8%BA%E5%95%86%E5%AE%B6%E5%BB%BA%E7%AB%8B%E5%95%86%E5%BA%97%E7%9A%84%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF%E3%80%82%0A%0A%23%23%23%23%20%E6%9E%84%E5%BB%BA%20Shopify%20%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%0A%0AShopify%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%E6%98%AF%E5%95%86%E5%AE%B6%E6%8E%A8%E5%87%BA%E5%9C%A8%E7%BA%BF%E5%95%86%E5%BA%97%E4%B9%8B%E6%97%85%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AB%99%E4%B9%8B%E4%B8%80%E3%80%82%E4%BD%9C%E4%B8%BA%E5%90%88%E4%BD%9C%E4%BC%99%E4%BC%B4%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%B8%BA%20Shopify%20%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%E5%88%9B%E5%BB%BA%E4%B8%BB%E9%A2%98%E5%B9%B6%E5%90%B8%E5%BC%95%E6%95%B0%E7%99%BE%E4%B8%87%E4%BC%81%E4%B8%9A%E5%AE%B6%E7%9A%84%E5%9B%BD%E9%99%85%E5%8F%97%E4%BC%97%E3%80%82%0A%0A%E8%A6%81%E8%8E%B7%E5%87%86%E8%BF%9B%E5%85%A5%20Shopify%20%E6%A8%A1%E7%89%88%E5%95%86%E5%BA%97%EF%BC%8C%E6%A8%A1%E7%89%88%E5%BF%85%E9%A1%BB%E6%BB%A1%E8%B6%B3%E4%B8%A5%E6%A0%BC%E7%9A%84%E6%8A%80%E6%9C%AF%E3%80%81%E7%BB%B4%E6%8A%A4%E5%92%8C%E6%94%AF%E6%8C%81%E8%A6%81%E6%B1%82%E3%80%82%E5%9C%A8%E5%BC%80%E5%A7%8B%E4%B8%BA%E5%95%86%E5%BA%97%E5%BC%80%E5%8F%91%E4%B8%BB%E9%A2%98%E4%B9%8B%E5%89%8D%EF%BC%8C%E6%82%A8%E5%BA%94%E8%AF%A5%E6%9F%A5%E7%9C%8B%E8%BF%99%E4%BA%9B%E8%A6%81%E6%B1%82%E3%80%82%0A%0A%E8%AF%A6%E7%BB%86%E4%BA%86%E8%A7%A3%E5%A6%82%E4%BD%95%E5%90%91%20Shopify%20%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%E6%8F%90%E4%BA%A4%E4%B8%BB%E9%A2%98%E3%80%82%0A%0A%3E%20%E8%AD%A6%E5%91%8A%3A%20%E5%A6%82%E6%9E%9C%E6%82%A8%E6%AD%A3%E5%9C%A8%E4%B8%BA%20Shopify%20%E4%B8%BB%E9%A2%98%E5%95%86%E5%BA%97%E6%9E%84%E5%BB%BA%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%88%99%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Dawn%20%E4%BD%9C%E4%B8%BA%E8%B5%B7%E7%82%B9%E3%80%82%E4%BD%86%E6%98%AF%EF%BC%8C%E6%82%A8%E6%8F%90%E4%BA%A4%E7%9A%84%E4%B8%BB%E9%A2%98%E9%9C%80%E8%A6%81%E4%B8%8E%20Dawn%20%E6%9C%89%E5%AE%9E%E8%B4%A8%E6%80%A7%E4%B8%8D%E5%90%8C%EF%BC%8C%E4%BB%A5%E4%BE%BF%E4%B8%BA%E7%94%A8%E6%88%B7%E6%8F%90%E4%BE%9B%E9%99%84%E5%8A%A0%E5%80%BC%E3%80%82%E4%BA%86%E8%A7%A3Dawn%20%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E3%80%82%0A%0A%23%23%23%23%20%E6%9E%84%E5%BB%BA%E4%B8%8E%E4%B8%BB%E9%A2%98%E9%9B%86%E6%88%90%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%0A%0A%E4%BD%9C%E4%B8%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%EF%BC%8C%E6%82%A8%E5%8F%AF%E4%BB%A5%E6%9E%84%E5%BB%BA%E6%89%A9%E5%B1%95%E5%95%86%E5%AE%B6%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E3%80%82%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%B8%BA%E7%89%B9%E5%AE%9A%E5%AE%A2%E6%88%B7%E6%9E%84%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%8C%E6%88%96%E5%B0%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8F%90%E4%BA%A4%E5%88%B0Shopify%20%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97%E3%80%82%0A%0A%E4%BA%86%E8%A7%A3%E6%9C%89%E5%85%B3%E6%9E%84%E5%BB%BA%E4%B8%8E%E4%B8%BB%E9%A2%98%E9%9B%86%E6%88%90%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF%E3%80%82`
+    </script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><meta name="keywords" content="react,antd,typescript,javascript,css,html,前端学习,前端进阶,个人博客"><meta name="description" content="### Shopify 主题概述
+
+主题决定了 Shopify在线商店对于商家及其客户的外观、感觉和功能。
+
+Shopify 主题是使用 Shopify 的主题模板语言Liquid以及 HTML、CSS、JavaScript …"><script async src="/click-mask/click-mask.min.js"></script><script async src="/test/tools/debug.min.js"></script><title>概述 - Shopify中文文档</title><script defer="defer" src="//saber2pr.top/wiki/release/%5Bname%5Df7d9affe21e8097041ea.min.js"></script><script defer="defer" src="//saber2pr.top/wiki/release/index~bde52cb3f7d9affe21e8097041ea.min.js"></script><script defer="defer" src="//saber2pr.top/wiki/release/index~31743c5af7d9affe21e8097041ea.min.js"></script><link href="//saber2pr.top/wiki/release/index~e96e9beaf7d9affe21e8097041ea.css" rel="stylesheet"><link href="//saber2pr.top/wiki/release/index~31743c5af7d9affe21e8097041ea.css" rel="stylesheet"></head><body><div id="root-pre"><div class="ssr-topheader">
+    <a class="ssr-topheader-a" href="/shopify-docs-zh/">Shopify中文文档</a>
+    </div><div style="margin: 0 4.5rem;display:flex;">
+      <div style="width:70%;">
+        <h1 class="ssr-content-title">概述</h1>
+        <div style="margin:1rem;padding:1rem;"><h3 id="shopify">Shopify 主题概述</h3>
+<p>主题决定了 Shopify在线商店对于商家及其客户的外观、感觉和功能。</p>
+<p>Shopify 主题是使用 Shopify 的主题模板语言Liquid以及 HTML、CSS、JavaScript 和 JSON 构建的。使用这些语言，开发人员可以创建客户想要的任何外观和感觉。Shopify 提供了多种工具和最佳实践来加速开发过程。</p>
+<p>作为开发人员，您可以为特定商家构建自定义主题、自定义主题以满足商家的需求，或者构建主题以在 Shopify 主题商店中销售。您还可以构建扩展主题功能的应用程序。</p>
+<hr />
+<h3 id="shopify-1">Shopify 主题剖析</h3>
+<p>主题控制商家在线商店的组织、功能和风格。主题代码采用特定于 Shopify 主题的文件的标准目录结构以及图像、样式表和脚本等支持资产进行组织。</p>
+<p>作为主题开发人员，您应该针对特定的细分市场或用例优化主题的组织、功能和风格。最好的主题是根据特定的商家资料制作的。了解有关设计主题的注意事项和最佳实践的更多信息。</p>
+<p>如果您正在为Shopify 模版商店构建模版，那么您需要满足模版提供的布局选项、模版样式以及包含的功能方面的某些要求。</p>
+<h4 id="">标记和功能</h4>
+<p>每个页面的组织由以下组件决定。</p>
+<p><img src="https://shopify.dev/assets/themes/architecture/all-components.png" alt="" /></p>
+<ol>
+<li>布局文件</li>
+<li>分配给正在显示的资源的模板</li>
+<li>添加到模板的部分组</li>
+<li>添加到模板或部分组的部分</li>
+<li>每个部分包含的块</li>
+</ol>
+<p>每个主题应该包含不同类型的模板来显示不同类型的内容，例如主页和产品。您还可以为同一资源类型创建多个模板，以允许在线商店中存在变化。</p>
+<p>可以将功能引入 Liquid 模板文件、部分、块和片段中的主题。您可以使用 Liquid、CSS 和 JavaScript 来实现主题功能。主题中包含的功能告知客户如何与在线商店上的内容进行交互。例如，您的主题需要允许客户通过提供带有类型的Liquidform标签product来将产品添加到购物车。</p>
+<h4 id="-1">配套资产</h4>
+<p>您可以向主题添加支持资源，以控制组件和功能的呈现，或存储可跨组件使用的可重用代码片段。</p>
+<p>例如，您需要添加资源来设置主题样式。这些资源有助于定义在线商店的美感以及如何设计内容部分来表达商家的品牌。主题的样式由应用于布局、模板和节文件的 CSS 和 JavaScript 定义。您想要在主题中重复使用的 Liquid 和 HTML 可以存储在snippets中。主题CSS和JavaScript存储在主题的assets目录中。</p>
+<p>此外，您可以使用区域设置文件将主题翻译成不同的语言。区域设置文件包含一组在整个主题中使用的文本字符串的翻译，并存储在主题的区域设置目录中。</p>
+<h4 id="-2">允许商家定制</h4>
+<p>商家可以使用 Shopify主题编辑器从 Shopify 后台自定义其主题。您可以提供不同的主题自定义选项，使商家无需编辑代码即可创建所需的客户体验：</p>
+<ul>
+<li>您可以使用部分和块使主题模板模块化。</li>
+<li>您可以创建设置以允许商家控制主题的外观或行为。商家可以使用动态源来设置动态值。</li>
+</ul>
+<hr />
+<h3 id="-3">主题发布</h3>
+<p>主题可以通过以下方式分发：</p>
+<ul>
+<li>通过将主题目录捆绑为 ZIP 文件，然后商家可以在其 Shopify 后台上传该文件。</li>
+<li>通过将主题上传到 GitHub 存储库，然后将存储库的分支连接到 Shopify 后台中的主题。</li>
+<li>通过使用Shopify CLI将主题推送到商店。</li>
+</ul>
+<hr />
+<h3 id="shopify-2">使用 Shopify 主题建立您的业务</h3>
+<p>作为Shopify 合作伙伴，您可以通过多种方式在使用 Shopify 模版时赚取收入。</p>
+<h4 id="-4">主题定制</h4>
+<p>开发人员最常见的主题相关任务是主题定制，即更改现有主题以满足商家的需求。定制工作范围从细微调整到大修。</p>
+<p>您可以通过Shopify 合作伙伴目录申请提供主题定制服务。</p>
+<p>了解有关合作伙伴目录的更多信息。</p>
+<h4 id="-5">建立定制主题和商店</h4>
+<p>开发人员可以从头开始构建主题。这可能是一项艰巨的任务，而且这项工作通常是由具有非常具体要求的单个商人委托的。</p>
+<p>您可以通过Shopify 合作伙伴目录提供主题构建服务。您可以向客户收取双方同意的费用来构建他们的主题。</p>
+<p>如果您正在为首次迁移到 Shopify 的客户构建主题，那么您可以使用开发商店来构建他们的商店并构建或自定义他们的主题。将商店交给商家后，您会收到经常性佣金。</p>
+<p>了解有关为商家建立商店的更多信息。</p>
+<h4 id="shopify-3">构建 Shopify 主题商店</h4>
+<p>Shopify主题商店是商家推出在线商店之旅的第一站之一。作为合作伙伴，您可以为 Shopify 主题商店创建主题并吸引数百万企业家的国际受众。</p>
+<p>要获准进入 Shopify 模版商店，模版必须满足严格的技术、维护和支持要求。在开始为商店开发主题之前，您应该查看这些要求。</p>
+<p>详细了解如何向 Shopify 主题商店提交主题。</p>
+<blockquote>
+  <p>警告: 如果您正在为 Shopify 主题商店构建主题，则可以使用 Dawn 作为起点。但是，您提交的主题需要与 Dawn 有实质性不同，以便为用户提供附加值。了解Dawn 的使用方法。</p>
+</blockquote>
+<h4 id="-6">构建与主题集成的应用程序</h4>
+<p>作为应用程序开发人员，您可以构建扩展商家主题功能的应用程序。您可以为特定客户构建自定义应用程序，或将应用程序提交到Shopify 应用商店。</p>
+<p>了解有关构建与主题集成的应用程序的更多信息。</p></div>
+      </div>
+      <div class="ssr-wiki-menu">
+        <div style="margin: 3rem 0 10rem"><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/1691027739/" class="ssr-a ">Shopify中文文档</a></li>
+<li class="ssr-li"><div class="ssr-dir ssr-dir-active">
+  <svg class="TreeBtn" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="10" height="10" style="transform: rotateX(0deg); transition: transform 0.2s ease 0s;"><g transform="translate(904.92214,-879.1482)"><path d=" m -673.67664,1221.6502 -231.2455,-231.24803 55.6165, -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894, 0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892, -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696, -174.68583 0.6895,0 26.281,25.03215 56.8701, 55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864 -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688, -104.0616 -231.873,-231.248 z
+" fill="currentColor"></path></g></svg>
+  <span class="ssr-div-name">主题</span></div><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3324366169/" class="ssr-a ">概述</a></li>
+<li class="ssr-li"><div class="ssr-dir ssr-dir-active">
+  <svg class="TreeBtn" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="10" height="10" style="transform: rotateX(0deg); transition: transform 0.2s ease 0s;"><g transform="translate(904.92214,-879.1482)"><path d=" m -673.67664,1221.6502 -231.2455,-231.24803 55.6165, -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894, 0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892, -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696, -174.68583 0.6895,0 26.281,25.03215 56.8701, 55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864 -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688, -104.0616 -231.873,-231.248 z
+" fill="currentColor"></path></g></svg>
+  <span class="ssr-div-name">入门</span></div><ul class="ssr-ul"><li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3324366169/" class="ssr-a ">概述</a></li>
+<li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3032883567/2205545984/" class="ssr-a ">创建主题</a></li>
+<li class="ssr-li"><a href="/shopify-docs-zh/posts/302341195/3032883567/1854440938/" class="ssr-a ">自定义主题</a></li></ul></li></ul></li></ul></div>
+      </div>
+    </div></div><div id="root"></div></body></html>
